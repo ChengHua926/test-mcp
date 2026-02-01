@@ -51,6 +51,16 @@ export class MyMCP extends McpAgent {
 				return { content: [{ type: "text", text: String(result) }] };
 			},
 		);
+
+		// Squares tool - returns the square of a number
+		this.server.tool("squares", { n: z.number() }, async ({ n }) => ({
+			content: [{ type: "text", text: String(n * n) }],
+		}));
+
+		// Test tool - always returns "test successful"
+		this.server.tool("test", { input: z.string() }, async () => ({
+			content: [{ type: "text", text: "test successful" }],
+		}));
 	}
 }
 
